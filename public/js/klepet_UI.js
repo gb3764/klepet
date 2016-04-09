@@ -116,6 +116,16 @@ $(document).ready(function() {
     showVideo(sporocilo.besedilo);
   });
   
+  socket.on('dregljaj', function (parameter) {
+    if (socket.socket.sessionid != parameter.socket) {
+     $('#vsebina').jrumble();
+     $('#vsebina').trigger('startRumble');
+     setTimeout(function (){
+       $('#vsebina').trigger('stopRumble');
+     }, 1500);
+    }
+  });
+  
   socket.on('kanali', function(kanali) {
     $('#seznam-kanalov').empty();
 
